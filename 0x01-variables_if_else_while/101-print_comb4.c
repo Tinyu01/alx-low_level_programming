@@ -20,11 +20,11 @@ int main(void)
 			{
 				if ((p != d) != q)
 				{
-																				putchar(d);
-																				putchar(p);
+					putchar(d);
+					putchar(p);
 					putchar(q);
 
-																																			if (d == '7' && p == '8')
+					if (d == '7' && p == '8')
 
 					continue;
 
