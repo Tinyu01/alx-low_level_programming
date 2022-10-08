@@ -20,10 +20,11 @@ int main(void)
 		y = z;
 																	printf("%lu, ", z);
 	}
-		a = x % 1000;
-		x = x / 1000;
-		b = y % 1000;
-		y = y / 1000;
+
+	a = x % 1000;
+	x = x / 1000;
+	b = y % 1000;
+	y = y / 1000;
 
 	while (count <= 98)
 	{
