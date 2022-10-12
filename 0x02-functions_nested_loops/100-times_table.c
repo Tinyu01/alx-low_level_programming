@@ -45,9 +45,8 @@ void print_times_table(int n)
 				}
 				else
 					_putchar((prod % 10) + '0');
-				}
-
-				_putchar('\n');
+			}
+			_putchar('\n');
 		}
 	}
 }
