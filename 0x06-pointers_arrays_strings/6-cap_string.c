@@ -1,46 +1,64 @@
-int check_seperators(char c);
+#include "main.h"
+#include <stddef.h>
+#include <stdio.h>
 
 /**
- * cap_string - a function that capitalizes all words of a string.
- * @s: An input string to capitalize letters
- * Return: pointer to s
+ * upper - capitalizes a letter if it is lowercase
+ * @c: pointer to a string
+ * Return: pointer to string
  */
 
-char *cap_string(char *s)
+char *upper(char *c)
 {
-	int i = 0;
-
-	while (s[i])
-	{
-		if (i == 0 && (s[i] >= 'a' && s[i] <= 'z'))
-			s[i] -= 32;
-
-		if (check_seperators(s[i]) && (s[i + 1] >= 'a' && s[i + 1] <= 'z'))
-			s[i + 1] -= 32;
-			i++;
-	}
-
-	return (s);
+	if (c[0] >= 'a' && c[0] <= 'z')
+		c[0] -= 32;
+	return (c);
 }
 
 /**
- * check_seperators - Separators of words: space, tabulation, new line,
- * ,, ;, ., !, ?, ", (, ), {, and }
- * @c: an input character
- * Return: 1 if seperator, 0 otherwise
+ * new_word - compares char to chars that indicate a new word
+ * @c: char to check
+ * Return: 1 if char is a word separator, 0 of not
  */
 
-int check_seperators(char c)
+int new_word(char c)
 {
 	int i = 0;
-	char seperators[13] = { ' ', '\t', '\n', ',', ';', '.', '!', '?',
-				'"', '(', ')', '{', '}' };
+	char *word = " \t\n,;.!?\"(){}";
 
-	for (; i < 13; i++)
+	while (word[i] != '\0')
 	{
-		if (c == seperators[i])
-		return (1);
+		if (c == word[i])
+			return (1);
+		i++;
 	}
 
 	return (0);
+}
+
+/**
+ * cap_string - capitalize all words in a string
+ * @str: string to modify
+ * Return: pointer to str
+ */
+
+char *cap_string(char *str)
+{
+	int i;
+
+	if (str == NULL)
+		return (NULL);
+	upper(str);
+	if (str[0] == '\0')
+		return (str);
+
+	for (i = 1; str[i] != '\0'; i++)
+	{
+		if (new_word(str[i - 1]) == 1)
+		{
+			upper(&str[i]);
+		}
+	}
+
+	return (str);
 }
