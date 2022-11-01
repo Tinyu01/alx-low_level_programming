@@ -1,20 +1,24 @@
 #include "lists.h"
+#include <stdio.h>
 #include <stddef.h>
+#include <string.h>
 
 /**
- * free_listint - free a listint_t list
- * @head: address of head of linked list
- * Return: nothing
+ * free_list - free list_t list
+ * @head: pointer to head of linked list
+ * Return: nothing;
  */
 
-void free_listint(listint_t *head)
+void free_list(list_t *head)
 {
-	listint_t *friend;
+	list_t *next;
 
 	while (head != NULL)
 	{
-		friend = head->next;
+		if (head->str != NULL)
+			free(head->str);
+		next = head->next;
 		free(head);
-		head = friend;
+		head = next;
 	}
 }

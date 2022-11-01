@@ -1,32 +1,14 @@
-#include "lists.h"
 #include <stdio.h>
-#include <stddef.h>
-#include <string.h>
+
+void tortoiseAndHare(void) __attribute__ ((constructor));
 
 /**
- * reverse_listint - reverses a listing_t list
- * @head: pointer to head of list
- * Return: address of new head, NULL if fails
+ * tortoiseAndHare - print line before main
+ * Return: nothing
  */
 
-listint_t *reverse_listint(listint_t **head)
+void tortoiseAndHare(void)
 {
-	listint_t *prior, *next;
-
-	if (*head == NULL)
-		return (NULL);
-
-	prior = *head;
-	next = (*head)->next;
-	prior->next = NULL;
-
-	while (next != NULL)
-	{
-		*head = next;
-		next = next->next;
-		(*head)->next = prior;
-		prior = *head;
-	}
-
-	return (*head);
+	printf("You're beat! and yet, you must allow,\n");
+	printf("I bore my house upon my back!\n");
 }
