@@ -1,21 +1,21 @@
 #include "dog.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
- * free_dog - frees a dog structure
- * @d: pointer to struct to free
- * Return: Nothing
+ * free_dog - free dog from memory
+ * @hobbes: dog object
+ * Return: nothing
  */
 
-void free_dog(dog_t *d)
+void free_dog(dog_t *hobbes)
 {
-	if (d == NULL)
+	if (hobbes == NULL)
 		return;
+	if (hobbes->owner != NULL)
+		free(hobbes->owner);
+	if (hobbes->name != NULL)
+		free(hobbes->name);
 
-	if (d->name != NULL)
-		free(d->name);
-
-	if (d->owner != NULL)
-		free(d->owner);
-		free(d);
+	free(hobbes);
 }
