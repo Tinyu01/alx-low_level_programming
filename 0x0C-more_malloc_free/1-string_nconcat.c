@@ -17,8 +17,8 @@ int _strlen(char *s)
 		return (1);
 
 	for (i = 0; s[i] != '\0'; i++)
-
-		return (i + 1);
+		;
+	return (i + 1);
 }
 
 /**
@@ -51,11 +51,12 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 
 	for (i = 0; i < size1 - 1; i++)
 		dest[i] = s1[i];
-											for (j = 0; j <= n; j++)
+
+	for (j = 0; j <= n; j++)
 	{
 		dest[i + j] = s2[j];
 	}
+	dest[i + j] = '\0';
 
-		dest[i + j] = '\0';
-											return (dest);
+	return (dest);
 }
