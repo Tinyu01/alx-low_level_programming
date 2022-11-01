@@ -18,7 +18,6 @@ int numchecker(char *s)
 		if (s[i] < '0' || s[i] > '9')
 			return (0);
 	}
-
 	return (1);
 }
 
@@ -40,7 +39,7 @@ int main(int argc, char *argv[])
 	if (argc != 2)
 	{
 		printf("Error\n");
-		return (1);
+			return (1);
 	}
 
 	change = atoi(input);
@@ -50,18 +49,15 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		return (1);
 	}
-
 	if (change < 0 && numchecker(&input[1]) == 0)
 	{
 		printf("Error\n");
 		return (1);
 	}
-
 	if (change < 0)
 	{
 		change = 0;
 	}
-
 	coins = change / 25;
 	change = change % 25;
 	coins = coins + change / 10;
@@ -72,6 +68,5 @@ int main(int argc, char *argv[])
 	change = change % 2;
 	coins += change;
 	printf("%d\n", coins);
-
 	return (0);
 }
