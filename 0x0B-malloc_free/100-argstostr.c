@@ -1,59 +1,63 @@
 #include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 /**
- * strtow - A function that splits a string into words
- * @str: An input pointer of the string to split
- * Return: Apointer to concatened strings or NULL if it str is NULL
+ * _strlen - returns the length of the string
+ * @s: input string to count
+ * Description: returns the length of a given string
+ * Return: length of string as int
  */
 
-char **strtow(char *str)
+int _strlen(char *s)
 {
-	char **array;
-	int i = 0, j, m, k = 0, len = 0, count = 0;
+	int i;
 
-	if (str == NULL || *str == '\0')
+	for (i = 0; s[i] != '\0'; i++)
+		;
+	return (i + 1);
+}
+
+/**
+ * argstostr - concatenates all arguments of program
+ * @ac: number of arguments
+ * @av: arguments, pointer to strings
+ * Description: concatenate all args to one string, separated by \n
+ * Return: pointer to string, NULL if fails
+ */
+
+char *argstostr(int ac, char **av)
+{
+	char *dest;
+	unsigned int size, i, j, k;
+
+	size = 0;
+	k = 0;
+
+	if (ac <= 0 || av == NULL)
 		return (NULL);
 
-	for (; str[i]; i++)
+	for (i = 0; i < (unsigned int)ac; i++)
 	{
-	if ((str[i] != ' ' || *str != '\t') &&
-	((str[i + 1] == ' ' || str[i + 1] == '\t') || str[i + 1] == '\n'))
-	count++;
+		size += _strlen(av[i]);
 	}
 
-	if (count == 0)
-		return (NULL);
-		array = malloc(sizeof(char *) * (count + 1));
+	dest = (char *)malloc((size + 1) * sizeof(char));
 
-	if (array == NULL)
+	if (dest == NULL)
 		return (NULL);
 
-	for (i = 0; str[i] != '\0' && k < count; i++)
+	for (i = 0; i < (unsigned int)ac; i++)
 	{
-
-		if (str[i] != ' ' || str[i] != '\t')
+		for (j = 0; av[i][j] != '\0'; j++)
 		{
-			len = 0;
-			j = i;
-
-																						while ((str[j] != ' ' || str[j] != '\t') && str[j] != '\0')
-			j++, len++;
-			array[k] = malloc((len + 1) * sizeof(char));
-
-			if (array[k] == NULL)
-			{
-				for (k = k - 1; k >= 0; k++)
-				free(array[k]);
-				free(array);
-				return (NULL);
-			}
-
-		for (m = 0; m < len; m++, i++)
-			array[k][m] = str[i];
-			array[k++][m] = '\0';
+			dest[k] = av[i][j];
+			k++;
 		}
-											}
-		array[k] = NULL;
-		return (array);
+		dest[k] = '\n';
+		k++;
+	}
+
+	dest[k] = '\0';
+	return (dest);
 }
